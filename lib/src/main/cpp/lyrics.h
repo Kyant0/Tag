@@ -23,6 +23,8 @@
 #include "trueaudiofile.h"
 #include "wavpackfile.h"
 #include "xmfile.h"
+#include "dsffile.h"
+#include "dsdifffile.h"
 
 std::string id3v2_lyrics(TagLib::Tag *tag) {
     auto id3v2Tag = dynamic_cast<TagLib::ID3v2::Tag *>(tag);
@@ -153,6 +155,12 @@ std::string get_lyrics(const std::string &path) {
     } else if (ext == "xm") {
         TagLib::XM::File f(pathStr, false);
         return mod_lyrics(f.tag());
+    } else if (ext == "dff" || ext == "dsdiff") {
+        TagLib::DSDIFF::File f(pathStr, false);
+        return id3v2_lyrics(f.ID3v2Tag());
+    } else if (ext == "dsf") {
+        TagLib::DSF::File f(pathStr, false);
+        return id3v2_lyrics(f.tag());
     }
 
     return {};
@@ -227,9 +235,15 @@ std::string get_lyrics(const int &fd) {
     } else if (ext == "xm") {
         TagLib::XM::File f(&stream, false);
         return mod_lyrics(f.tag());
+    } else if (ext == "dff" || ext == "dsdiff") {
+        TagLib::DSDIFF::File f(&stream, false);
+        return id3v2_lyrics(f.ID3v2Tag());
+    } else if (ext == "dsf") {
+        TagLib::DSF::File f(&stream, false);
+        return id3v2_lyrics(f.tag());
     }
 
-    return {};
+        return {};
 }
 
 #endif //TAG_LYRICS_H
