@@ -1,8 +1,8 @@
 # Tag
 
-You can get and edit the metadata from a audio file with this library.
+You can get read edit the metadata from a audio file with this library.
 
-The library is using [the forked version](https://github.com/Kyant0/taglib) of [TagLib](https://taglib.org/).
+The library is based on [the forked version](https://github.com/Kyant0/taglib) of [TagLib](https://taglib.org/).
 
 **Official supported extensions:**
 mp3, ogg, flac, mpc, wv, spx, opus, tta, m4a, m4r, m4b, m4p, mp4, 3g2, m4v, wma, asf, aif, aiff, afc, aifc, wav, ape,
@@ -29,9 +29,9 @@ implementation("com.github.Kyant0:Tag:2023.7.3")
 
 ### Tag
 
-**get:** `Tag.getTag(path: String)`
+**read:** `Tag.getTag(path: String)`
 
-**save:** `tag.save()`
+**edit:** `tag.save()`
 
 **Supported fields:**
 
@@ -58,14 +58,14 @@ data class Tag(
 
 ### Album art
 
-**get:** `Tag.getPicture(path: String)`
+**read:** `Tag.getPicture(path: String)`
 
-**save:** **TODO**
+**edit:** **TODO**
 
 ### Lyrics
 
-**get:** `Tag.getLyrics(path: String)`
+**read:** `Tag.getLyrics(path: String)`
 
-**save:** `Tag.saveLyrics(path: String, lyrics: String)` (only works for mp3, ogg and flac files for now)
+**edit:** `Tag.saveLyrics(path: String, lyrics: String)` (only works for mp3, ogg and flac files for now)
 
 **remove:** `Tag.saveLyrics(path: String, lyrics = "")`
