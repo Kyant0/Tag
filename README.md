@@ -1,6 +1,6 @@
 # Tag
 
-You can get read edit the metadata from a audio file with this library.
+You can read and edit the metadata from a audio file with this library.
 
 The library is based on [the forked version](https://github.com/Kyant0/taglib) of [TagLib](https://taglib.org/).
 
