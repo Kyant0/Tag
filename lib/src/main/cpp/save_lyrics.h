@@ -1,5 +1,5 @@
-#ifndef VANILLA_SAVE_LYRICS_H
-#define VANILLA_SAVE_LYRICS_H
+#ifndef TAG_SAVE_LYRICS_H
+#define TAG_SAVE_LYRICS_H
 
 #include <string>
 #include "apefile.h"
@@ -135,4 +135,4 @@ bool save_lyrics(const int &fd, const std::string &s) {
     return false;
 }
 
-#endif //VANILLA_SAVE_LYRICS_H
+#endif //TAG_SAVE_LYRICS_H

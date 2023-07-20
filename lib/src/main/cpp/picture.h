@@ -1,5 +1,5 @@
-#ifndef VANILLA_PICTURE_H
-#define VANILLA_PICTURE_H
+#ifndef TAG_PICTURE_H
+#define TAG_PICTURE_H
 
 #include <string>
 #include "apefile.h"
@@ -236,4 +236,4 @@ TagLib::ByteVector get_picture(const int &fd) {
     return {};
 }
 
-#endif //VANILLA_PICTURE_H
+#endif //TAG_PICTURE_H

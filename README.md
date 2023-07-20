@@ -1,6 +1,6 @@
 # Tag
 
-You can retrieve and save the tag, album art and lyrics from a audio file with this library.
+You can get and edit the metadata from a audio file with this library.
 
 The library is using [the forked version](https://github.com/Kyant0/taglib) of [TagLib](https://taglib.org/).
 

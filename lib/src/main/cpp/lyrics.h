@@ -1,5 +1,5 @@
-#ifndef VANILLA_LYRICS_H
-#define VANILLA_LYRICS_H
+#ifndef TAG_LYRICS_H
+#define TAG_LYRICS_H
 
 #include <string>
 #include "apefile.h"
@@ -232,4 +232,4 @@ std::string get_lyrics(const int &fd) {
     return {};
 }
 
-#endif //VANILLA_LYRICS_H
+#endif //TAG_LYRICS_H

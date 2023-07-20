@@ -1,5 +1,5 @@
-#ifndef VANILLA_FD_H
-#define VANILLA_FD_H
+#ifndef TAG_FD_H
+#define TAG_FD_H
 
 #include <unistd.h>
 
@@ -57,4 +57,4 @@ std::string getFilePathFromFd(int fd) {
     return std::string(filePath);
 }
 
-#endif //VANILLA_FD_H
+#endif //TAG_FD_H
