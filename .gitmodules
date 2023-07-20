@@ -1,0 +1,3 @@
+[submodule "lib/src/main/cpp/taglib"]
+	path = lib/src/main/cpp/taglib
+	url = https://github.com/Kyant0/taglib.git
