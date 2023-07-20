@@ -29,11 +29,11 @@ implementation("com.github.Kyant0:Tag:2023.7.1")
 
 ### Tag
 
-get: `Tag.getTag(path: String)`
+**get:** `Tag.getTag(path: String)`
 
-save: `Tag.save()`
+**save:** `Tag.save()`
 
-fields:
+**Supported fields:**
 
 ```kotlin
 data class Tag(
@@ -58,13 +58,14 @@ data class Tag(
 
 ### Album art
 
-get: `Tag.getPicture(path: String)`
-save: **TODO**
+**get:** `Tag.getPicture(path: String)`
+
+**save:** **TODO**
 
 ### Lyrics
 
-get: `Tag.getLyrics(path: String)`
+**get:** `Tag.getLyrics(path: String)`
 
-save: `Tag.saveLyrics(path: String, lyrics: String)` (only works for mp3, ogg and flac files for now)
+**save:** `Tag.saveLyrics(path: String, lyrics: String)` (only works for mp3, ogg and flac files for now)
 
-remove: `Tag.saveLyrics(path: String, lyrics = "")`
+**remove:** `Tag.saveLyrics(path: String, lyrics = "")`
