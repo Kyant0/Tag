@@ -17,7 +17,7 @@ data class Tag(
     val channels: Int,
     val path: String,
     val size: Long,
-    val modifiedTime: Long,
+    val modifiedTime: Long
 ) {
     external fun save(): Boolean
 
