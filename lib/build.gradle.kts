@@ -11,7 +11,7 @@ android {
     namespace = "com.kyant.tag"
     compileSdk = 34
     buildToolsVersion = "34.0.0"
-    ndkVersion = "26.0.10404224"
+    ndkVersion = "25.1.8937393"
 
     defaultConfig {
         minSdk = 21

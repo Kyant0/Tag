@@ -1,3 +1,0 @@
-before_install:
-  - yes | $ANDROID_HOME/tools/bin/sdkmanager --install "ndk;26.0.10404224"
-  - export NDK_HOME=$ANDROID_HOME/ndk/26.0.10404224
