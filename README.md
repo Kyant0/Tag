@@ -22,7 +22,7 @@ allprojects {
     }
 }
 
-implementation("com.github.Kyant0:Tag:2023.7.1")
+implementation("com.github.Kyant0:Tag:2023.7.2")
 ```
 
 ## Usage
