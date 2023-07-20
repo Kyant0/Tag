@@ -22,6 +22,8 @@ target_include_directories(tag PUBLIC
         taglib/taglib
         taglib/taglib/ape
         taglib/taglib/asf
+        taglib/taglib/dsdiff
+        taglib/taglib/dsf
         taglib/taglib/flac
         taglib/taglib/it
         taglib/taglib/mod
