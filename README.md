@@ -4,7 +4,7 @@ You can get and edit the metadata from a audio file with this library.
 
 The library is using [the forked version](https://github.com/Kyant0/taglib) of [TagLib](https://taglib.org/).
 
-**Supported extensions:**
+**Official supported extensions:**
 mp3, ogg, flac, mpc, wv, spx, opus, tta, m4a, m4r, m4b, m4p, mp4, 3g2, m4v, wma, asf, aif, aiff, afc, aifc, wav, ape,
 mod, module, nst, wow, s3m, it, xm
 
