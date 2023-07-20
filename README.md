@@ -25,12 +25,15 @@ allprojects {
 implementation("com.github.Kyant0:Tag:2023.7.1")
 ```
 
-## Tag
+## Usage
+
+### Tag
 
 get: `Tag.getTag(path: String)`
+
 save: `Tag.save()`
 
-### Tag fields
+fields:
 
 ```kotlin
 data class Tag(
@@ -53,13 +56,15 @@ data class Tag(
 
 **TODO:** We will support more fields in the future, such as `albumArtist`, `disc` and `replayGain`s.
 
-## Album art
+### Album art
 
 get: `Tag.getPicture(path: String)`
 save: **TODO**
 
-## Lyrics
+### Lyrics
 
 get: `Tag.getLyrics(path: String)`
+
 save: `Tag.saveLyrics(path: String, lyrics: String)` (only works for mp3, ogg and flac files for now)
+
 remove: `Tag.saveLyrics(path: String, lyrics = "")`
