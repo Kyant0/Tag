@@ -4,7 +4,7 @@ You can retrieve and save the tag, album art and lyrics from a audio file with t
 
 The library is using [the forked version](https://github.com/Kyant0/taglib) of [TagLib](https://taglib.org/).
 
-**Supported formats:**,
+**Supported formats:**
 mp3, ogg, flac, mpc, wv, spx, opus, tta, m4a, m4r, m4b, m4p, mp4, 3g2, m4v, wma, asf, aif, aiff, afc, aifc, wav, ape,
 mod, module, nst, wow, s3m, it, xm
 
@@ -31,7 +31,7 @@ implementation("com.github.Kyant0:Tag:2023.7.1")
 
 **get:** `Tag.getTag(path: String)`
 
-**save:** `Tag.save()`
+**save:** `tag.save()`
 
 **Supported fields:**
 
