@@ -37,6 +37,7 @@ implementation("com.github.Kyant0:Tag:2023.7.4")
 
 ```kotlin
 data class Tag(
+    // tags
     val title: String,
     val artist: String,
     val album: String,
