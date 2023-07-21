@@ -22,7 +22,7 @@ allprojects {
     }
 }
 
-implementation("com.github.Kyant0:Tag:2023.7.4")
+implementation("com.github.Kyant0:Tag:2023.7.5")
 ```
 
 ## Usage
@@ -35,31 +35,15 @@ implementation("com.github.Kyant0:Tag:2023.7.4")
 
 **Supported fields:**
 
-```kotlin
-data class Tag(
-    // tags
-    val title: String,
-    val artist: String,
-    val album: String,
-    val albumArtist: String,
-    val comment: String,
-    val genre: String,
-    val year: Int,
-    val disc: Int,
-    val track: Int,
-    // properties
-    val duration: Long,
-    val bitrate: Int,
-    val sampleRate: Int,
-    val channels: Int,
-    // file info
-    val path: String,
-    val size: Long,
-    val modifiedTime: Long
-)
-```
+**Tags:** title, artist, album, albumArtist, comment, genre, year, disc, track
 
-**TODO:** We will support more fields in the future, for example the `replayGain`s.
+**Properties:** duration, bitrate, sampleRate, channels
+
+**File info:** path, size, lastModified
+
+**Planned fields:**
+
+`replayGain`s
 
 ### Album art
 
