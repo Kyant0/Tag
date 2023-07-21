@@ -51,6 +51,7 @@ data class Tag(
     val bitrate: Int,
     val sampleRate: Int,
     val channels: Int,
+    // file info
     val path: String,
     val size: Long,
     val modifiedTime: Long
