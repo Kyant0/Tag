@@ -19,7 +19,7 @@ JNIEXPORT jobject JNICALL Java_com_kyant_tag_Tag_00024Companion_getTag(JNIEnv *e
             tagConstructor = env->GetMethodID(
                     tagClass,
                     "<init>",
-                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIJIIILjava/lang/String;JJ)V"
+                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIJIIILjava/lang/String;JJ)V"
             );
 
         const char *pathStr = env->GetStringUTFChars(path, nullptr);
@@ -44,14 +44,16 @@ JNIEXPORT jobject JNICALL Java_com_kyant_tag_Tag_00024Companion_getTag(JNIEnv *e
             jstring title = env->NewStringUTF(tag->title().toCString(true));
             jstring artist = env->NewStringUTF(tag->artist().toCString(true));
             jstring album = env->NewStringUTF(tag->album().toCString(true));
+            jstring albumArtist = env->NewStringUTF(tag->albumArtist().toCString(true));
             jstring comment = env->NewStringUTF(tag->comment().toCString(true));
             jstring genre = env->NewStringUTF(tag->genre().toCString(true));
             jint year = static_cast<jint>(tag->year());
+            jint disc = static_cast<jint>(tag->disc());
             jint track = static_cast<jint>(tag->track());
 
             jobject tagObj = env->NewObject(
-                    tagClass, tagConstructor, title, artist, album, comment, genre, year, track, length, bitrate,
-                    sampleRate, channels, path, fileSize, lastWriteTimeT
+                    tagClass, tagConstructor, title, artist, album, albumArtist, comment, genre, year, disc, track,
+                    length, bitrate, sampleRate, channels, path, fileSize, lastWriteTimeT
             );
             return tagObj;
         }
@@ -72,7 +74,7 @@ JNIEXPORT jobject JNICALL Java_com_kyant_tag_Tag_00024Companion_getFdTag(JNIEnv 
             tagConstructor = env->GetMethodID(
                     tagClass,
                     "<init>",
-                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIJIIILjava/lang/String;JJ)V"
+                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIJIIILjava/lang/String;JJ)V"
             );
 
         TagLib::FileStream stream(uniqueFd.get(), true);
@@ -96,14 +98,16 @@ JNIEXPORT jobject JNICALL Java_com_kyant_tag_Tag_00024Companion_getFdTag(JNIEnv 
             jstring title = env->NewStringUTF(tag->title().toCString(true));
             jstring artist = env->NewStringUTF(tag->artist().toCString(true));
             jstring album = env->NewStringUTF(tag->album().toCString(true));
+            jstring albumArtist = env->NewStringUTF(tag->albumArtist().toCString(true));
             jstring comment = env->NewStringUTF(tag->comment().toCString(true));
             jstring genre = env->NewStringUTF(tag->genre().toCString(true));
             jint year = static_cast<jint>(tag->year());
+            jint disc = static_cast<jint>(tag->disc());
             jint track = static_cast<jint>(tag->track());
 
             jobject tagObj = env->NewObject(
-                    tagClass, tagConstructor, title, artist, album, comment, genre, year, track, length, bitrate,
-                    sampleRate, channels, path, fileSize, lastWriteTimeT
+                    tagClass, tagConstructor, title, artist, album, albumArtist, comment, genre, year, disc, track,
+                    length, bitrate, sampleRate, channels, path, fileSize, lastWriteTimeT
             );
             return tagObj;
         }
@@ -142,6 +146,10 @@ Java_com_kyant_tag_Tag_save(JNIEnv *env, jobject tagObj) {
             auto album = static_cast<jstring>(env->GetObjectField(tagObj, albumField));
             tag->setAlbum(TagLib::String(env->GetStringUTFChars(album, nullptr), TagLib::String::UTF8));
 
+            jfieldID albumArtistField = env->GetFieldID(tagClass, "albumArtist", "Ljava/lang/String;");
+            auto albumArtist = static_cast<jstring>(env->GetObjectField(tagObj, albumArtistField));
+            tag->setAlbumArtist(TagLib::String(env->GetStringUTFChars(albumArtist, nullptr), TagLib::String::UTF8));
+
             jfieldID commentField = env->GetFieldID(tagClass, "comment", "Ljava/lang/String;");
             auto comment = static_cast<jstring>(env->GetObjectField(tagObj, commentField));
             tag->setComment(TagLib::String(env->GetStringUTFChars(comment, nullptr), TagLib::String::UTF8));
@@ -153,6 +161,10 @@ Java_com_kyant_tag_Tag_save(JNIEnv *env, jobject tagObj) {
             jfieldID yearField = env->GetFieldID(tagClass, "year", "I");
             auto year = static_cast<jint>(env->GetIntField(tagObj, yearField));
             tag->setYear(static_cast<unsigned int>(year));
+
+            jfieldID discField = env->GetFieldID(tagClass, "disc", "I");
+            auto disc = static_cast<jint>(env->GetIntField(tagObj, discField));
+            tag->setDisc(static_cast<unsigned int>(disc));
 
             jfieldID trackField = env->GetFieldID(tagClass, "track", "I");
             auto track = static_cast<jint>(env->GetIntField(tagObj, trackField));

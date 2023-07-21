@@ -22,7 +22,7 @@ allprojects {
     }
 }
 
-implementation("com.github.Kyant0:Tag:2023.7.3")
+implementation("com.github.Kyant0:Tag:2023.7.4")
 ```
 
 ## Usage
@@ -40,10 +40,13 @@ data class Tag(
     val title: String,
     val artist: String,
     val album: String,
+    val albumArtist: String,
     val comment: String,
     val genre: String,
     val year: Int,
+    val disc: Int,
     val track: Int,
+    // properties
     val duration: Long,
     val bitrate: Int,
     val sampleRate: Int,
@@ -54,7 +57,7 @@ data class Tag(
 )
 ```
 
-**TODO:** We will support more fields in the future, such as `albumArtist`, `disc` and `replayGain`s.
+**TODO:** We will support more fields in the future, for example the `replayGain`s.
 
 ### Album art
 
