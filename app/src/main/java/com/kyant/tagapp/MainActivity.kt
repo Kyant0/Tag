@@ -29,7 +29,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import com.kyant.tag.Tag
+import com.kyant.tag.AudioProperties.Companion.toAudioProperties
+import com.kyant.tag.Metadata
+import com.kyant.tag.Tags.Companion.toTags
 import java.io.File
 import kotlin.streams.toList as kotlinToList
 
@@ -44,13 +46,13 @@ class MainActivity : ComponentActivity() {
                 File("/storage/emulated/0/Music/tests/data").listFiles()
                     ?.toList()
                     ?.parallelStream()
-                    ?.map { Tag.getTag(it.path) }
+                    ?.map { it.path to Metadata.getMetadata(it.path) }
                     ?.kotlinToList()
             } else {
                 File("/storage/emulated/0/Music").listFiles()
                     ?.toList()
-                    ?.map { Tag.getTag(it.path) }
-            }?.filterNotNull()
+                    ?.map { it.path to Metadata.getMetadata(it.path) }
+            }
         } catch (_: Exception) {
             null
         } ?: emptyList()
@@ -99,14 +101,29 @@ class MainActivity : ComponentActivity() {
                             }
                             Spacer(modifier = Modifier.height(8.dp))
                         }
-                        items(tags) { tag ->
+                        items(tags) { (path, metadata) ->
                             Text(
-                                text = tag.path.substringAfterLast("/Music/tests/data/"),
+                                text = path.substringAfterLast("/Music/tests/data/"),
                                 modifier = Modifier.padding(24.dp, 8.dp),
                                 style = MaterialTheme.typography.titleMedium
                             )
+                            if (metadata == null) {
+                                Text(
+                                    text = "No metadata",
+                                    modifier = Modifier.padding(horizontal = 24.dp),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                                Divider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
+                                return@items
+                            }
                             Text(
-                                text = tag.toString(),
+                                text = metadata.toAudioProperties().toString(),
+                                modifier = Modifier.padding(horizontal = 24.dp),
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                            Divider(modifier = Modifier.padding(24.dp, 4.dp))
+                            Text(
+                                text = metadata.toTags().toString(),
                                 modifier = Modifier.padding(horizontal = 24.dp),
                                 style = MaterialTheme.typography.bodyMedium
                             )

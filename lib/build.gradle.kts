@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     `maven-publish`
 }
 
 group = "com.kyant.tag"
-version = "2023.7.5"
+version = "2023.7.6"
 
 android {
     namespace = "com.kyant.tag"
@@ -45,13 +46,17 @@ android {
     }
 }
 
+dependencies {
+    implementation(libs.kotlinx.serialization.core)
+}
+
 afterEvaluate {
     publishing {
         publications {
             register("mavenRelease", MavenPublication::class) {
                 groupId = "com.kyant"
                 artifactId = "tag"
-                version = "2023.7.5"
+                version = "2023.7.6"
                 from(components["release"])
             }
         }

@@ -22,28 +22,26 @@ allprojects {
     }
 }
 
-implementation("com.github.Kyant0:Tag:2023.7.5")
+implementation("com.github.Kyant0:Tag:2023.7.6")
 ```
 
 ## Usage
 
-### Tag
+### Metadata
 
-**read:** `Tag.getTag(path: String)`
+`Metadata` contains the audio properties and property map (original metadata).
 
-**edit:** `tag.save()`
+Call `Metadata.getMetadata(path)` to get the metadata of a file.
 
-**Supported fields:**
+Unfortunately, you can't edit the metadata of a file yet.
 
-**Tags:** title, artist, album, albumArtist, comment, genre, year, disc, track
+### AudioProperties & Tags
 
-**Properties:** duration, bitrate, sampleRate, channels
+`AudioProperties` holds the audio properties and `Tags` holds the property map (metadata).
 
-**File info:** path, size, lastModified
+To convert from `Metadata` to `AudioProperties`, call `metadata.toAudioProperties()`.
 
-**Planned fields:**
-
-`replayGain`s
+To convert from `Metadata` to `Tags`, call `metadata.toTags()`.
 
 ### Album art
 
@@ -55,6 +53,6 @@ implementation("com.github.Kyant0:Tag:2023.7.5")
 
 **read:** `Tag.getLyrics(path: String)`
 
-**edit:** `Tag.saveLyrics(path: String, lyrics: String)` (only works for mp3, ogg and flac files for now)
+**edit:** `Tag.saveLyrics(path: String, lyrics: String)` // Only works for mp3, ogg and flac files for now
 
 **remove:** `Tag.saveLyrics(path: String, lyrics = "")`

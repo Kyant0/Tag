@@ -3,6 +3,7 @@ activity = "1.8.0-alpha06"
 compose = "1.6.0-alpha01"
 composeM3 = "1.2.0-alpha03"
 ktx = "1.12.0-alpha05"
+serialization = "1.5.1"
 
 agp = "8.1.0-rc01"
 kotlin = "1.9.0"
@@ -14,8 +15,10 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "composeM3" }
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm", version.ref = "serialization" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
