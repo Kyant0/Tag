@@ -45,14 +45,14 @@ To convert from `Metadata` to `Tags`, call `metadata.toTags()`.
 
 ### Album art
 
-**read:** `Tag.getPicture(path: String)`
+**read:** `Metadata.getPicture(path: String)`
 
 **edit:** **TODO**
 
 ### Lyrics
 
-**read:** `Tag.getLyrics(path: String)`
+**read:** `Metadata.getLyrics(path: String)`
 
-**edit:** `Tag.saveLyrics(path: String, lyrics: String)` // Only works for mp3, ogg and flac files for now
+**edit:** `Metadata.saveLyrics(path: String, lyrics: String)` // Only works for mp3, ogg and flac files for now
 
-**remove:** `Tag.saveLyrics(path: String, lyrics = "")`
+**remove:** `Metadata.saveLyrics(path: String, lyrics = "")`
