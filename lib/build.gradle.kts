@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.kyant.tag"
-version = "2023.7.6"
+version = "2023.7.7"
 
 android {
     namespace = "com.kyant.tag"
@@ -56,7 +56,7 @@ afterEvaluate {
             register("mavenRelease", MavenPublication::class) {
                 groupId = "com.kyant"
                 artifactId = "tag"
-                version = "2023.7.6"
+                version = "2023.7.7"
                 from(components["release"])
             }
         }

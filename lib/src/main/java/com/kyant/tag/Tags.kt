@@ -43,20 +43,91 @@ data class Tags(
     val barcode: List<String> = emptyList(),
     val releaseCountry: List<String> = emptyList(),
     val releaseStatus: List<String> = emptyList(),
-    val releaseType: List<String> = emptyList(),
-
-    // MusicBrainz identifiers
-    val musicBrainzTrackId: List<String> = emptyList(),
-    val musicBrainzAlbumId: List<String> = emptyList(),
-    val musicBrainzReleaseGroupId: List<String> = emptyList(),
-    val musicBrainzReleaseTrackId: List<String> = emptyList(),
-    val musicBrainzWorkId: List<String> = emptyList(),
-    val musicBrainzArtistId: List<String> = emptyList(),
-    val musicBrainzAlbumArtistId: List<String> = emptyList(),
-    val acoustidId: List<String> = emptyList(),
-    val acoustidFingerprint: List<String> = emptyList(),
-    val musicIpPuid: List<String> = emptyList()
+    val releaseType: List<String> = emptyList()
 ) {
+    fun merge(other: Tags): Tags {
+        return Metadata(properties = this.toPropertiesMap() + other.toPropertiesMap()).toTags()
+    }
+
+    override fun toString(): String {
+        val data = buildString {
+            if (title.isNotEmpty()) append("title=$title, ")
+            if (album.isNotEmpty()) append("album=$album, ")
+            if (artist.isNotEmpty()) append("artist=$artist, ")
+            if (albumArtist.isNotEmpty()) append("albumArtist=$albumArtist, ")
+            if (subtitle.isNotEmpty()) append("subtitle=$subtitle, ")
+            if (trackNumber.isNotEmpty()) append("trackNumber=$trackNumber, ")
+            if (discNumber.isNotEmpty()) append("discNumber=$discNumber, ")
+            if (date.isNotEmpty()) append("date=$date, ")
+            if (originalDate.isNotEmpty()) append("originalDate=$originalDate, ")
+            if (genre.isNotEmpty()) append("genre=$genre, ")
+            if (comment.isNotEmpty()) append("comment=$comment, ")
+            if (titleSort.isNotEmpty()) append("titleSort=$titleSort, ")
+            if (albumSort.isNotEmpty()) append("albumSort=$albumSort, ")
+            if (artistSort.isNotEmpty()) append("artistSort=$artistSort, ")
+            if (albumArtistSort.isNotEmpty()) append("albumArtistSort=$albumArtistSort, ")
+            if (composerSort.isNotEmpty()) append("composerSort=$composerSort, ")
+            if (composer.isNotEmpty()) append("composer=$composer, ")
+            if (lyricist.isNotEmpty()) append("lyricist=$lyricist, ")
+            if (conductor.isNotEmpty()) append("conductor=$conductor, ")
+            if (remixer.isNotEmpty()) append("remixer=$remixer, ")
+            if (performer.isNotEmpty()) append("performer=$performer, ")
+            if (isrc.isNotEmpty()) append("isrc=$isrc, ")
+            if (asin.isNotEmpty()) append("asin=$asin, ")
+            if (bpm.isNotEmpty()) append("bpm=$bpm, ")
+            if (encodedBy.isNotEmpty()) append("encodedBy=$encodedBy, ")
+            if (mood.isNotEmpty()) append("mood=$mood, ")
+            if (media.isNotEmpty()) append("media=$media, ")
+            if (label.isNotEmpty()) append("label=$label, ")
+            if (catalogNumber.isNotEmpty()) append("catalogNumber=$catalogNumber, ")
+            if (barcode.isNotEmpty()) append("barcode=$barcode, ")
+            if (releaseCountry.isNotEmpty()) append("releaseCountry=$releaseCountry, ")
+            if (releaseStatus.isNotEmpty()) append("releaseStatus=$releaseStatus, ")
+            if (releaseType.isNotEmpty()) append("releaseType=$releaseType, ")
+        }.removeSuffix(", ")
+        return "Tags($data)"
+    }
+
+    fun toPropertiesMap(): Map<String, Array<String>> {
+        val properties = mutableMapOf<String, Array<String>>()
+
+        properties["TITLE"] = title.toTypedArray()
+        properties["ALBUM"] = album.toTypedArray()
+        properties["ARTIST"] = artist.toTypedArray()
+        properties["ALBUMARTIST"] = albumArtist.toTypedArray()
+        properties["SUBTITLE"] = subtitle.toTypedArray()
+        properties["TRACKNUMBER"] = trackNumber.toTypedArray()
+        properties["DISCNUMBER"] = discNumber.toTypedArray()
+        properties["DATE"] = date.toTypedArray()
+        properties["ORIGINALDATE"] = originalDate.toTypedArray()
+        properties["GENRE"] = genre.toTypedArray()
+        properties["COMMENT"] = comment.toTypedArray()
+        properties["TITLESORT"] = titleSort.toTypedArray()
+        properties["ALBUMSORT"] = albumSort.toTypedArray()
+        properties["ARTISTSORT"] = artistSort.toTypedArray()
+        properties["ALBUMARTISTSORT"] = albumArtistSort.toTypedArray()
+        properties["COMPOSERSORT"] = composerSort.toTypedArray()
+        properties["COMPOSER"] = composer.toTypedArray()
+        properties["LYRICIST"] = lyricist.toTypedArray()
+        properties["CONDUCTOR"] = conductor.toTypedArray()
+        properties["REMIXER"] = remixer.toTypedArray()
+        properties["PERFORMER"] = performer.toTypedArray()
+        properties["ISRC"] = isrc.toTypedArray()
+        properties["ASIN"] = asin.toTypedArray()
+        properties["BPM"] = bpm.toTypedArray()
+        properties["ENCODEDBY"] = encodedBy.toTypedArray()
+        properties["MOOD"] = mood.toTypedArray()
+        properties["MEDIA"] = media.toTypedArray()
+        properties["LABEL"] = label.toTypedArray()
+        properties["CATALOGNUMBER"] = catalogNumber.toTypedArray()
+        properties["BARCODE"] = barcode.toTypedArray()
+        properties["RELEASECOUNTRY"] = releaseCountry.toTypedArray()
+        properties["RELEASESTATUS"] = releaseStatus.toTypedArray()
+        properties["RELEASETYPE"] = releaseType.toTypedArray()
+
+        return properties
+    }
+
     companion object {
         fun Metadata.toTags(): Tags = Tags(
             properties["TITLE"]?.toList() ?: emptyList(),
@@ -91,17 +162,7 @@ data class Tags(
             properties["BARCODE"]?.toList() ?: emptyList(),
             properties["RELEASECOUNTRY"]?.toList() ?: emptyList(),
             properties["RELEASESTATUS"]?.toList() ?: emptyList(),
-            properties["RELEASETYPE"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_TRACKID"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_ALBUMID"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_RELEASEGROUPID"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_RELEASETRACKID"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_WORKID"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_ARTISTID"]?.toList() ?: emptyList(),
-            properties["MUSICBRAINZ_ALBUMARTISTID"]?.toList() ?: emptyList(),
-            properties["ACOUSTID_ID"]?.toList() ?: emptyList(),
-            properties["ACOUSTID_FINGERPRINT"]?.toList() ?: emptyList(),
-            properties["MUSICIP_PUID"]?.toList() ?: emptyList()
+            properties["RELEASETYPE"]?.toList() ?: emptyList()
         )
     }
 }
