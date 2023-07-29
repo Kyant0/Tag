@@ -44,7 +44,7 @@ data class Tags(
     val releaseCountry: List<String> = emptyList(),
     val releaseStatus: List<String> = emptyList(),
     val releaseType: List<String> = emptyList()
-) {
+) : java.io.Serializable {
     fun merge(other: Tags): Tags {
         return Metadata(properties = this.toPropertiesMap() + other.toPropertiesMap()).toTags()
     }

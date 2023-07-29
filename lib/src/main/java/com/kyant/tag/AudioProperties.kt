@@ -8,7 +8,7 @@ data class AudioProperties(
     val bitrate: Int = 0,
     val sampleRate: Int = 0,
     val channels: Int = 0
-) {
+) : java.io.Serializable {
     companion object {
         fun Metadata.toAudioProperties(): AudioProperties = AudioProperties(
             lengthInMilliseconds,
