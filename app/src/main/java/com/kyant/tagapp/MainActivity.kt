@@ -20,10 +20,10 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
-import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Modifier
@@ -113,7 +113,7 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(horizontal = 24.dp),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
-                                Divider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
+                                VerticalDivider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
                                 return@items
                             }
                             Text(
@@ -121,13 +121,13 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(horizontal = 24.dp),
                                 style = MaterialTheme.typography.bodyMedium
                             )
-                            Divider(modifier = Modifier.padding(24.dp, 4.dp))
+                            VerticalDivider(modifier = Modifier.padding(24.dp, 4.dp))
                             Text(
                                 text = metadata.toTags().toString(),
                                 modifier = Modifier.padding(horizontal = 24.dp),
                                 style = MaterialTheme.typography.bodyMedium
                             )
-                            Divider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
+                            VerticalDivider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
                         }
                     }
                 }
