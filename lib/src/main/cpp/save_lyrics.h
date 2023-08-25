@@ -97,42 +97,4 @@ bool save_lyrics(const std::string &path, const std::string &s) {
     return false;
 }
 
-bool save_lyrics(const int &fd, const std::string &s) {
-    auto path = getFilePathFromFd(fd);
-    auto ext = path.substr(path.find_last_of(".") + 1);
-    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
-
-    TagLib::FileStream stream(fd, true);
-
-    if (ext == "mp3") {
-        auto frameFactory = TagLib::ID3v2::FrameFactory::instance();
-        TagLib::MPEG::File f(&stream, frameFactory, false);
-        auto saved = save_id3v2_lyrics(f.ID3v2Tag(), s);
-        if (saved) {
-            f.save();
-        }
-        return saved;
-    } else if (ext == "ogg") {
-        TagLib::Ogg::Vorbis::File f(&stream, false);
-        auto saved = save_xiph_comment_lyrics(f.tag(), s);
-        if (saved) {
-            f.save();
-        }
-        return saved;
-    } else if (ext == "flac") {
-        auto frameFactory = TagLib::ID3v2::FrameFactory::instance();
-        TagLib::FLAC::File f(&stream, frameFactory, false);
-        auto saved = save_xiph_comment_lyrics(f.xiphComment(), s);
-        if (!saved) {
-            saved = save_id3v2_lyrics(f.ID3v2Tag(), s);
-        }
-        if (saved) {
-            f.save();
-        }
-        return saved;
-    }
-
-    return false;
-}
-
 #endif //TAG_SAVE_LYRICS_H

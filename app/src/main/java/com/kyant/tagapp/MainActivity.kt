@@ -20,13 +20,14 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.kyant.tag.AudioProperties.Companion.toAudioProperties
@@ -113,7 +114,7 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(horizontal = 24.dp),
                                     style = MaterialTheme.typography.bodyMedium
                                 )
-                                VerticalDivider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
+                                HorizontalDivider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
                                 return@items
                             }
                             Text(
@@ -121,13 +122,17 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(horizontal = 24.dp),
                                 style = MaterialTheme.typography.bodyMedium
                             )
-                            VerticalDivider(modifier = Modifier.padding(24.dp, 4.dp))
+                            HorizontalDivider(
+                                modifier = Modifier
+                                    .alpha(0.6f)
+                                    .padding(24.dp, 8.dp)
+                            )
                             Text(
                                 text = metadata.toTags().toString(),
                                 modifier = Modifier.padding(horizontal = 24.dp),
                                 style = MaterialTheme.typography.bodyMedium
                             )
-                            VerticalDivider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
+                            HorizontalDivider(modifier = Modifier.padding(24.dp, 16.dp, 24.dp, 8.dp))
                         }
                     }
                 }

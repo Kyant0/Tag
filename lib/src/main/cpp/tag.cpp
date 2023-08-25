@@ -2,7 +2,6 @@
 #include "fileref.h"
 #include "tfilestream.h"
 #include "tpropertymap.h"
-#include "fd.h"
 #include "picture.h"
 #include "lyrics.h"
 #include "save_lyrics.h"
@@ -83,38 +82,11 @@ Java_com_kyant_tag_Metadata_00024Companion_getMetadata(JNIEnv *env, jobject /* t
     return getMetadata(env, fileRef);
 }
 
-extern "C"
-JNIEXPORT jobject JNICALL
-Java_com_kyant_tag_Metadata_00024Companion_getFdMetadata(JNIEnv *env, jobject /* this */, jint fd) {
-    UniqueFileDescriptor uniqueFd(dup(fd));
-    TagLib::FileStream stream(uniqueFd.get(), true);
-    TagLib::FileRef fileRef(&stream, true, TagLib::AudioProperties::Fast);
-    return getMetadata(env, fileRef);
-}
-
 extern "C" JNIEXPORT jbyteArray JNICALL
 Java_com_kyant_tag_Metadata_00024Companion_getPicture(JNIEnv *env,
                                                       jobject /* this */,
                                                       jstring path) {
     auto picture = get_picture(env->GetStringUTFChars(path, nullptr));
-    if (picture.isEmpty())
-        return nullptr;
-
-    jbyteArray bytes = env->NewByteArray(static_cast<jint>(picture.size()));
-    env->SetByteArrayRegion(
-            bytes,
-            0,
-            static_cast<jint>(picture.size()),
-            reinterpret_cast<const jbyte *>(picture.data())
-    );
-    return bytes;
-}
-
-extern "C" JNIEXPORT jbyteArray JNICALL
-Java_com_kyant_tag_Metadata_00024Companion_getFdPicture(JNIEnv *env,
-                                                        jobject /* this */,
-                                                        jint fd) {
-    auto picture = get_picture(dup(fd));
     if (picture.isEmpty())
         return nullptr;
 
@@ -139,17 +111,6 @@ Java_com_kyant_tag_Metadata_00024Companion_getLyrics(JNIEnv *env,
     return env->NewStringUTF(lyrics.c_str());
 }
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_kyant_tag_Metadata_00024Companion_getFdLyrics(JNIEnv *env,
-                                                       jobject /* this */,
-                                                       jint fd) {
-    auto lyrics = get_lyrics(dup(fd));
-    if (lyrics.empty())
-        return nullptr;
-
-    return env->NewStringUTF(lyrics.c_str());
-}
-
 extern "C" JNIEXPORT jboolean JNICALL
 Java_com_kyant_tag_Metadata_00024Companion_saveLyrics(JNIEnv *env,
                                                       jobject /* this */,
@@ -157,17 +118,6 @@ Java_com_kyant_tag_Metadata_00024Companion_saveLyrics(JNIEnv *env,
                                                       jstring lyrics) {
     return save_lyrics(
             env->GetStringUTFChars(path, nullptr),
-            env->GetStringUTFChars(lyrics, nullptr)
-    );
-}
-
-extern "C" JNIEXPORT jboolean JNICALL
-Java_com_kyant_tag_Metadata_00024Companion_saveFdLyrics(JNIEnv *env,
-                                                        jobject /* this */,
-                                                        jint fd,
-                                                        jstring lyrics) {
-    return save_lyrics(
-            dup(fd),
             env->GetStringUTFChars(lyrics, nullptr)
     );
 }
